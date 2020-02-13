@@ -1,0 +1,28 @@
+SELECT * FROM countries;
+SELECT SUM(population)
+FROM population_years 
+JOIN countries ON population_years.country_id = countries.id
+WHERE countries.continent = 'Oceania';
+
+SELECT AVG(population)
+FROM population_years 
+JOIN countries ON population_years.country_id = countries.id
+WHERE countries.continent = 'South America' AND population_years.year = 2003;
+
+SELECT countries.name
+FROM countries
+JOIN population_years 
+ON countries.id = population_years.country_id
+ORDER BY population_years.population ASC LIMIT 1;
+
+SELECT AVG(population) FROM population_years JOIN countries ON
+population_years.country_id = countries.id
+WHERE countries.name = 'Poland';
+
+SELECT COUNT(*) FROM countries
+JOIN population_years 
+ON countries.id = population_years.country_id
+WHERE countries.name = 'The%';
+
+SELECT countries.continent, SUM(population) FROM population_years JOIN countries ON population_years.country_id = countries.id
+GROUP BY countries.continent;
